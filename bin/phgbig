@@ -2,9 +2,6 @@
 
 # highest rez picture
 # needs lots of light, or manually set gain or exposure
-# uncomment if running first time
-sudo chmod 777 /dev/media1
-sudo chmod 777 /dev/video1
 fname=$(date +"%Y%m%dT%H%M%S")
 ## uncomment with correct settings
 # turn autoexposure off (1 is manual?!)

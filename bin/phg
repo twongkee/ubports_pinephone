@@ -1,8 +1,5 @@
 #!/bin/bash
 #bayer_bggr8-SBGGR8 medium high
-# uncomment if running first time
-# sudo chmod 777 /dev/media1
-# sudo chmod 777 /dev/video1
 fname=$(date +"%Y%m%dT%H%M%S")
 v4l2-ctl -d /dev/video1 -l > ~/Pictures/$fname.settings.txt
 #bayer_bggr8-SBGGR8
