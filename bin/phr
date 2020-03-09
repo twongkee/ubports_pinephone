@@ -1,0 +1,9 @@
+#!/bin/bash
+# medium low yuv picture rotated
+# uncomment if running first time
+# sudo chmod 777 /dev/media1
+# sudo chmod 777 /dev/video1
+NAME=$(date +"%Y%m%dT%H%M%S")
+media-ctl -d /dev/media1 --set-v4l2 '"ov5640 3-004c":0[fmt:UYVY2X8/1280x720]'
+ffmpeg -f rawvideo -pixel_format yuv420p -s 1280x720 -f video4linux2 -i /dev/video1 -vframes 1 ~/Pictures/$NAME.jpg
+convert ~/Pictures/$NAME.jpg -rotate 90 ~/Pictures/$NAME.jpg
