@@ -1,14 +1,6 @@
 #!/bin/bash
-
-# highest rez picture
-# needs lots of light, or manually set gain or exposure
 fname=$(date +"%Y%m%dT%H%M%S")
-## uncomment with correct settings
-# turn autoexposure off (1 is manual?!)
-# v4l2-ctl -d /dev/video1 -c auto_exposure=1
-# my room is very dim
-# v4l2-ctl -d /dev/video1 -c exposure=48000
 v4l2-ctl -d /dev/video1 -l > ~/Pictures/$fname.settings.txt
 #bayer_bggr8-SBGGR8
-media-ctl -d /dev/media1 --set-v4l2 '"ov5640 3-004c":0[fmt:SBGGR8/2592x1944]'
+media-ctl -d /dev/media1 --set-v4l2 '"ov5640 3-004c":0[fmt:SBGGR8/2500x1600@1/5]'
 ffmpeg -hide_banner -f rawvideo -pixel_format bayer_bggr8 -s 2592x1944 -f video4linux2 -i /dev/video1 -vframes 1 ~/Pictures/$fname-bggr8-big.jpg
