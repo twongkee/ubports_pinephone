@@ -1,0 +1,5 @@
+#!/bin/bash
+fname=$(date +"%Y%m%dT%H%M%S")
+media-ctl -d /dev/media1 --set-v4l2 '"ov5640 3-004c":0[fmt:UYVY2X8/320x240]'
+ffmpeg -f rawvideo -pixel_format yuv420p -s 320x240 -f video4linux2 -i /dev/video1 -vframes 1 ~/Pictures/$fname.jpg
+convert ~/Pictures/$fname.jpg -rotate 90 ~/Pictures/preview.jpg

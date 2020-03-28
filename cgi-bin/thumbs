@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import os
+path='/home/phablet/Pictures'
+#print(os.walk(top, topdown=True, onerror=None, followlinks=False))
+#print(path)
+piclist=[]
+for root,d_names,f_names in os.walk(path):
+    #print( root, d_names, f_names)
+    for f in f_names:
+        if 'jpg' == f[-3:]:
+            piclist += [root[13:]+'/'+f]
+
+#mycmd=['/bin/bash', '/home/phablet/bin/pow']
+
+print("Content-type: text/html")
+print("")
+print("""<html><body>
+      <h1>PinePhone</h1>
+      <a href="/Pictures">Pictures</a>
+<br />
+      <a href="/">Root</a>
+<br />
+      """
+)
+width=4
+w=0
+for p in sorted(piclist):
+    print("<a href='"+p+"'>")
+    print("<img src='"+p+"' width='200'>")
+    print("</a>")
+    w+=1
+    if w>width:
+        w=0
+        print("<br />")
+print("""</body></html>""")

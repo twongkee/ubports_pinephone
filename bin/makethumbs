@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+
+import os
+import subprocess
+path='/home/phablet/Pictures'
+#print(os.walk(top, topdown=True, onerror=None, followlinks=False))
+#print(path)
+piclist=[]
+for root,d_names,f_names in os.walk(path):
+    #print( root, d_names, f_names)
+    for f in f_names:
+        if 'jpg' == f[-3:]:
+            piclist += [root[13:]+'/'+f]
+
+#mycmd=['/bin/bash', '/home/phablet/bin/pow']
+print("make thumbs")
+
+for p in sorted(piclist):
+    print("image:"+p)
+    thumbdest = "/home/phablet/thumbnails"+p
+    thumbpath = thumbdest.split("/")
+    thumbpath.pop()
+    mkdircmd="mkdir -p "+"/".join(thumbpath)
+    subprocess.call([mkdircmd], shell=True)
+    cmd = "convert /home/phablet"+p+" -resize 160 "+thumbdest
+    # print(cmd)
+    subprocess.call([cmd], shell=True)
+    

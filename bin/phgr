@@ -1,0 +1,8 @@
+#!/bin/bash
+fname=$(date +"%Y%m%dT%H%M%S")
+v4l2-ctl -d /dev/video1 -l > ~/Pictures/$fname.settings.txt
+media-ctl -d /dev/media1 --set-v4l2 '"ov5640 3-004c":0[fmt:SBGGR8/1920x1080]'
+media-ctl -d /dev/media1 -p >> ~/Pictures/$fname.settings.txt
+#bayer_bggr8-SBGGR8
+ffmpeg -hide_banner -f rawvideo -pixel_format bayer_bggr8 -s 1920x1080 -f video4linux2 -i /dev/video1 -vframes 1 ~/Pictures/$fname-bggr8-r.jpg
+convert ~/Pictures/$fname-bggr8-r.jpg -rotate 90 ~/Pictures/$fname-bggr8-r.jpg

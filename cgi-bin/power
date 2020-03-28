@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+import subprocess 
+
+mycmd=['/bin/bash', '/home/phablet/bin/pow']
+
+result = subprocess.run(mycmd, stdout=subprocess.PIPE)
+print("Content-type: text/html")
+print("")
+print("""<html><body>
+      <h1>PinePhone Power Status</h1>
+      <a href="/Pictures">Pictures</a>
+<br />
+      <a href="/">Root</a>
+<pre>
+      """
+)
+output=result.stdout.decode('utf8')
+print(output)
+print(""" </pre></body></html>""")
