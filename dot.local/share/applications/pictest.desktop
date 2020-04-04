@@ -1,0 +1,17 @@
+[Desktop Entry]
+Version=1.0
+Name=pictest
+Comment=Browse pictest using QtWebEngine
+Keywords=Internet;WWW;Browser;Web;Explorer;pictest
+Type=Application
+Icon=/home/phablet/Pictures/cam.png
+Exec=morph-browser %u http://127.0.0.1:8000
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
+X-Ubuntu-Touch=true
+X-Ubuntu-Gettext-Domain=morph-browser
+X-Ubuntu-Single-Instance=true
+X-Ubuntu-Default-Department-ID=web-browsers
+X-Screenshot=/usr/share/morph-browser/screenshot.png
+X-Ubuntu-Splash-Color=#FFFFFF

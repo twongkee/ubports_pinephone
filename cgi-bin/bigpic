@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+import os
+import subprocess
+from datetime import datetime
+
+cmd='/home/phablet/bin/bigpic >> /tmp/pic.log 2>>/tmp/pic.err'
+subprocess.call([cmd], shell=True)
+timenow = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+print("Content-type: text/html")
+print("")
+print("""<html><body>
+<center>
+<h1>PinePhone</h1>
+<a href="/Pictures">Pictures</a>
+<a href="/">Root</a>
+<br />
+    <img src='/Pictures/preview.jpg?"""+timenow+ """' >
+    <br />
+    <form action="/cgi-bin/pictest">
+        <button type="submit" style="font-size : 20px; width: 100%; height: 50px;">pictest</button>
+   </form>
+    <form action="/cgi-bin/bigpic">
+        <button type="submit" style="font-size : 20px; width: 100%; height: 50px;">bigpic</button>
+   </form>
+   <br />
+      """
+)
+print(timenow,"</center></body></html>")
